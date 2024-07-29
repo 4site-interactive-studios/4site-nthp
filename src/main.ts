@@ -2,6 +2,9 @@ declare const window: any;
 
 import "./style.css";
 import { CommonEN } from "./lib/common-en";
+import { logger } from "./lib/logger";
+import { EnForm } from "./lib/en-form";
+import { VGS } from "./lib/vgs";
 
 const monthlyRadio = document.querySelector(
   "input[type='radio'][value='monthly']"
@@ -14,13 +17,24 @@ const isMonthly = () => {
 const frequencyRadioName = monthlyRadio.name || "transaction.recurrfreq";
 
 function run() {
+  const enForm = EnForm.getInstance();
+  const successLog = (message: string) => {
+    logger(message, "#fff", "#0F0");
+  };
+  const errorLog = (message: string) => {
+    logger(message, "#fff", "#F00");
+  };
+  const infoLog = (message: string) => {
+    logger(message, "#fff", "#00F");
+  };
+
   CommonEN.log("4Site Init", "#000", "#FF0");
 
   // Only work on Donation Pages
   if (CommonEN.getPageType() === "DONATION") {
     // If there's no transaction.recurrpay field, create it
     if (!document.querySelector("input[name='transaction.recurrpay']")) {
-      CommonEN.log("Creating transaction.recurrpay", "#000", "#FF0");
+      infoLog("Creating transaction.recurrpay");
       CommonEN.createHiddenInput(
         "transaction.recurrpay",
         isMonthly() ? "Y" : ""
@@ -28,7 +42,7 @@ function run() {
     }
     // If there's no transaction.recurrfreq field, create it
     if (!document.querySelector("input[name='transaction.recurrfreq']")) {
-      CommonEN.log("Creating transaction.recurrfreq", "#000", "#FF0");
+      infoLog("Creating transaction.recurrfreq");
       CommonEN.createHiddenInput(
         "transaction.recurrfreq",
         isMonthly() ? "MONTHLY" : ""
@@ -47,7 +61,7 @@ function run() {
         const freq =
           frequency.value.toUpperCase() === "MONTHLY" ? "MONTHLY" : "ONETIME";
         CommonEN.setBodyData("donation-frequency", freq);
-        CommonEN.log(`Donation Frequency: ${freq}`, "#000", "#FF0");
+        infoLog(`Donation Frequency: ${freq}`);
         CommonEN.setFieldValue(
           "transaction.recurrpay",
           freq === "MONTHLY" ? "Y" : ""
@@ -65,8 +79,46 @@ function run() {
       isMonthly() ? "MONTHLY" : ""
     );
   } else {
-    CommonEN.log("Not a Donation Page", "#000", "#FF0");
+    errorLog("Not a Donation Page");
   }
+
+  // EN Form Events
+  enForm.onSubmit.subscribe(() => {
+    infoLog("onSubmit");
+  });
+  enForm.onValidate.subscribe(() => {
+    infoLog("onValidate");
+  });
+  enForm.onError.subscribe(() => {
+    infoLog("onError");
+  });
+  window.enOnSubmit = () => {
+    enForm.submit = true;
+    enForm.submitPromise = false;
+    enForm.dispatchSubmit();
+    CommonEN.watchForError(CommonEN.enableSubmit);
+    if (!enForm.submit) return false;
+    if (enForm.submitPromise) return enForm.submitPromise;
+    successLog("enOnSubmit Success");
+    // If all validation passes, we'll watch for Digital Wallets Errors, which
+    // will not reload the page (thanks EN), so we will enable the submit button if
+    // an error is programmatically thrown by the Digital Wallets
+    return true;
+  };
+  window.enOnError = () => {
+    enForm.dispatchError();
+  };
+  window.enOnValidate = () => {
+    enForm.validate = true;
+    enForm.validatePromise = false;
+    enForm.dispatchValidate();
+    if (!enForm.validate) return false;
+    if (enForm.validatePromise) return enForm.validatePromise;
+    successLog("Validation Passed");
+    return true;
+  };
+  // Very Good Security
+  new VGS();
 }
 // Make sure we only run after the page load, checking if the page is fully loaded
 if (document.readyState === "complete") {

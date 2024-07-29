@@ -13,6 +13,7 @@
     "vite": "^5.3.4"
   },
   "dependencies": {
+    "strongly-typed-events": "^3.0.11",
     "vite-plugin-css-injected-by-js": "^3.5.1"
   }
 }

@@ -1,1 +1,8 @@
 /* Add CSS Customizations Below */
+.en__field__error {
+  color: red;
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 5px;
+  display: block !important;
+}

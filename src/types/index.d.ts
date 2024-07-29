@@ -3,6 +3,8 @@ declare global {
   interface Window {
     EngagingNetworks: any;
     pageJson: any;
+    enVGSFields: any;
+    dataLayer: any;
   }
 
   interface Document {
