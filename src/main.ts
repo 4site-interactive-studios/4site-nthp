@@ -14,7 +14,7 @@ const isMonthly = () => {
   return monthlyRadio && monthlyRadio.checked;
 };
 
-const frequencyRadioName = monthlyRadio.name || "transaction.recurrfreq";
+const frequencyRadioName = monthlyRadio?.name || "transaction.recurrfreq";
 
 function run() {
   const enForm = EnForm.getInstance();

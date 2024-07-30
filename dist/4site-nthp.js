@@ -113,10 +113,10 @@ class c {
           l && (window.EngagingNetworks.dependencies.forEach(
             (h) => {
               if ("actions" in h && h.actions.length > 0) {
-                let F = !1;
-                h.actions.forEach(($) => {
-                  "target" in $ && $.target == l && (F = !0);
-                }), F || o.push(h);
+                let $ = !1;
+                h.actions.forEach((I) => {
+                  "target" in I && I.target == l && ($ = !0);
+                }), $ || o.push(h);
               }
             }
           ), o.length > 0 && window.EngagingNetworks.require._defined.enDependencies.dependencies.parseDependencies(
@@ -211,9 +211,9 @@ class c {
     e = (e + "").replace(/[^0-9+\-Ee.]/g, "");
     const s = isFinite(+e) ? +e : 0, a = isFinite(+t) ? Math.abs(t) : 0, o = typeof r > "u" ? "," : r, m = typeof i > "u" ? "." : i;
     let l = [];
-    return l = (a ? function(F, $) {
-      const ee = Math.pow(10, $);
-      return "" + Math.round(F * ee) / ee;
+    return l = (a ? function($, I) {
+      const ee = Math.pow(10, I);
+      return "" + Math.round($ * ee) / ee;
     }(s, a) : "" + Math.round(s)).split("."), l[0].length > 3 && (l[0] = l[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, o)), (l[1] || "").length < a && (l[1] = l[1] || "", l[1] += new Array(a - l[1].length + 1).join("0")), l.join(m);
   }
   // Clean an Amount
@@ -374,9 +374,9 @@ class c {
     return t.top >= 0 && t.left >= 0 && t.bottom <= (window.innerHeight || document.documentElement.clientHeight) && t.right <= (window.innerWidth || document.documentElement.clientWidth);
   }
 }
-var I = {}, u = {}, f = {}, D = {};
-Object.defineProperty(D, "__esModule", { value: !0 });
-D.DispatcherWrapper = void 0;
+var T = {}, u = {}, f = {}, B = {};
+Object.defineProperty(B, "__esModule", { value: !0 });
+B.DispatcherWrapper = void 0;
 class be {
   /**
    * Creates an instance of DispatcherWrapper.
@@ -478,10 +478,10 @@ class be {
     this._clear();
   }
 }
-D.DispatcherWrapper = be;
-var B = {};
-Object.defineProperty(B, "__esModule", { value: !0 });
-B.Subscription = void 0;
+B.DispatcherWrapper = be;
+var L = {};
+Object.defineProperty(L, "__esModule", { value: !0 });
+L.Subscription = void 0;
 class Ee {
   /**
    * Creates an instance of Subscription.
@@ -509,7 +509,7 @@ class Ee {
     }
   }
 }
-B.Subscription = Ee;
+L.Subscription = Ee;
 var b = {};
 Object.defineProperty(b, "__esModule", { value: !0 });
 b.EventManagement = void 0;
@@ -536,7 +536,7 @@ class _e {
 b.EventManagement = _e;
 Object.defineProperty(f, "__esModule", { value: !0 });
 f.SubscriptionChangeEventDispatcher = f.DispatcherBase = void 0;
-const Se = D, Pe = B, ye = b;
+const Se = B, Pe = L, ye = b;
 class ce {
   constructor() {
     this._subscriptions = new Array();
@@ -728,9 +728,9 @@ class ue extends ce {
   }
 }
 f.SubscriptionChangeEventDispatcher = ue;
-var L = {};
-Object.defineProperty(L, "__esModule", { value: !0 });
-L.DispatchError = void 0;
+var w = {};
+Object.defineProperty(w, "__esModule", { value: !0 });
+w.DispatchError = void 0;
 class De extends Error {
   /**
    * Creates an instance of DispatchError.
@@ -742,10 +742,10 @@ class De extends Error {
     super(e);
   }
 }
-L.DispatchError = De;
-var q = {};
-Object.defineProperty(q, "__esModule", { value: !0 });
-q.EventListBase = void 0;
+w.DispatchError = De;
+var V = {};
+Object.defineProperty(V, "__esModule", { value: !0 });
+V.EventListBase = void 0;
 class Be {
   constructor() {
     this._events = {};
@@ -773,10 +773,10 @@ class Be {
     delete this._events[e];
   }
 }
-q.EventListBase = Be;
-var V = {};
-Object.defineProperty(V, "__esModule", { value: !0 });
-V.HandlingBase = void 0;
+V.EventListBase = Be;
+var k = {};
+Object.defineProperty(k, "__esModule", { value: !0 });
+k.HandlingBase = void 0;
 class Le {
   /**
    * Creates an instance of HandlingBase.
@@ -848,10 +848,10 @@ class Le {
     this.unsubscribe(e, t);
   }
 }
-V.HandlingBase = Le;
-var k = {}, w = {};
-Object.defineProperty(w, "__esModule", { value: !0 });
-w.PromiseSubscription = void 0;
+k.HandlingBase = Le;
+var Y = {}, O = {};
+Object.defineProperty(O, "__esModule", { value: !0 });
+O.PromiseSubscription = void 0;
 class we {
   /**
    * Creates an instance of PromiseSubscription.
@@ -886,10 +886,10 @@ class we {
     }
   }
 }
-w.PromiseSubscription = we;
-Object.defineProperty(k, "__esModule", { value: !0 });
-k.PromiseDispatcherBase = void 0;
-const Oe = w, je = b, Ae = f, Me = L;
+O.PromiseSubscription = we;
+Object.defineProperty(Y, "__esModule", { value: !0 });
+Y.PromiseDispatcherBase = void 0;
+const Oe = O, je = b, Ae = f, Me = w;
 class He extends Ae.DispatcherBase {
   /**
    * The normal dispatch cannot be used in this class.
@@ -938,7 +938,7 @@ class He extends Ae.DispatcherBase {
     return e ? null : { propagationStopped: !1 };
   }
 }
-k.PromiseDispatcherBase = He;
+Y.PromiseDispatcherBase = He;
 (function(n) {
   /*!
    * Strongly Typed Events for TypeScript - Core
@@ -955,15 +955,15 @@ k.PromiseDispatcherBase = He;
   } }), Object.defineProperty(n, "SubscriptionChangeEventDispatcher", { enumerable: !0, get: function() {
     return e.SubscriptionChangeEventDispatcher;
   } });
-  const t = L;
+  const t = w;
   Object.defineProperty(n, "DispatchError", { enumerable: !0, get: function() {
     return t.DispatchError;
   } });
-  const i = D;
+  const i = B;
   Object.defineProperty(n, "DispatcherWrapper", { enumerable: !0, get: function() {
     return i.DispatcherWrapper;
   } });
-  const r = q;
+  const r = V;
   Object.defineProperty(n, "EventListBase", { enumerable: !0, get: function() {
     return r.EventListBase;
   } });
@@ -971,19 +971,19 @@ k.PromiseDispatcherBase = He;
   Object.defineProperty(n, "EventManagement", { enumerable: !0, get: function() {
     return s.EventManagement;
   } });
-  const a = V;
+  const a = k;
   Object.defineProperty(n, "HandlingBase", { enumerable: !0, get: function() {
     return a.HandlingBase;
   } });
-  const o = k;
+  const o = Y;
   Object.defineProperty(n, "PromiseDispatcherBase", { enumerable: !0, get: function() {
     return o.PromiseDispatcherBase;
   } });
-  const m = w;
+  const m = O;
   Object.defineProperty(n, "PromiseSubscription", { enumerable: !0, get: function() {
     return m.PromiseSubscription;
   } });
-  const l = B;
+  const l = L;
   Object.defineProperty(n, "Subscription", { enumerable: !0, get: function() {
     return l.Subscription;
   } });
@@ -1040,9 +1040,9 @@ class Ce extends te.DispatcherBase {
   }
 }
 E.EventDispatcher = Ce;
-var Y = {}, O = {};
-Object.defineProperty(O, "__esModule", { value: !0 });
-O.EventList = void 0;
+var J = {}, j = {};
+Object.defineProperty(j, "__esModule", { value: !0 });
+j.EventList = void 0;
 const Ne = u, Ue = E;
 class Fe extends Ne.EventListBase {
   /**
@@ -1058,16 +1058,16 @@ class Fe extends Ne.EventListBase {
     return new Ue.EventDispatcher();
   }
 }
-O.EventList = Fe;
-Object.defineProperty(Y, "__esModule", { value: !0 });
-Y.EventHandlingBase = void 0;
-const $e = u, Ie = O;
+j.EventList = Fe;
+Object.defineProperty(J, "__esModule", { value: !0 });
+J.EventHandlingBase = void 0;
+const $e = u, Ie = j;
 class Te extends $e.HandlingBase {
   constructor() {
     super(new Ie.EventList());
   }
 }
-Y.EventHandlingBase = Te;
+J.EventHandlingBase = Te;
 var R = {};
 Object.defineProperty(R, "__esModule", { value: !0 });
 R.NonUniformEventList = void 0;
@@ -1115,11 +1115,11 @@ R.NonUniformEventList = Ve;
   Object.defineProperty(n, "EventDispatcher", { enumerable: !0, get: function() {
     return e.EventDispatcher;
   } });
-  const t = Y;
+  const t = J;
   Object.defineProperty(n, "EventHandlingBase", { enumerable: !0, get: function() {
     return t.EventHandlingBase;
   } });
-  const i = O;
+  const i = j;
   Object.defineProperty(n, "EventList", { enumerable: !0, get: function() {
     return i.EventList;
   } });
@@ -1178,11 +1178,11 @@ class ke extends ne.DispatcherBase {
   }
 }
 _.SimpleEventDispatcher = ke;
-var J = {}, j = {};
-Object.defineProperty(j, "__esModule", { value: !0 });
-j.SimpleEventList = void 0;
-const Ye = u, Re = _;
-class Je extends Ye.EventListBase {
+var W = {}, A = {};
+Object.defineProperty(A, "__esModule", { value: !0 });
+A.SimpleEventList = void 0;
+const Ye = u, Je = _;
+class Re extends Ye.EventListBase {
   /**
    * Creates a new SimpleEventList instance.
    */
@@ -1193,22 +1193,22 @@ class Je extends Ye.EventListBase {
    * Creates a new dispatcher instance.
    */
   createDispatcher() {
-    return new Re.SimpleEventDispatcher();
+    return new Je.SimpleEventDispatcher();
   }
 }
-j.SimpleEventList = Je;
-Object.defineProperty(J, "__esModule", { value: !0 });
-J.SimpleEventHandlingBase = void 0;
-const We = u, Ge = j;
+A.SimpleEventList = Re;
+Object.defineProperty(W, "__esModule", { value: !0 });
+W.SimpleEventHandlingBase = void 0;
+const We = u, Ge = A;
 class Ze extends We.HandlingBase {
   constructor() {
     super(new Ge.SimpleEventList());
   }
 }
-J.SimpleEventHandlingBase = Ze;
-var W = {};
-Object.defineProperty(W, "__esModule", { value: !0 });
-W.NonUniformSimpleEventList = void 0;
+W.SimpleEventHandlingBase = Ze;
+var G = {};
+Object.defineProperty(G, "__esModule", { value: !0 });
+G.NonUniformSimpleEventList = void 0;
 const ze = _;
 class Qe {
   constructor() {
@@ -1238,29 +1238,29 @@ class Qe {
     return new ze.SimpleEventDispatcher();
   }
 }
-W.NonUniformSimpleEventList = Qe;
+G.NonUniformSimpleEventList = Qe;
 (function(n) {
   Object.defineProperty(n, "__esModule", { value: !0 }), n.NonUniformSimpleEventList = n.SimpleEventList = n.SimpleEventHandlingBase = n.SimpleEventDispatcher = void 0;
   const e = _;
   Object.defineProperty(n, "SimpleEventDispatcher", { enumerable: !0, get: function() {
     return e.SimpleEventDispatcher;
   } });
-  const t = J;
+  const t = W;
   Object.defineProperty(n, "SimpleEventHandlingBase", { enumerable: !0, get: function() {
     return t.SimpleEventHandlingBase;
   } });
-  const i = W;
+  const i = G;
   Object.defineProperty(n, "NonUniformSimpleEventList", { enumerable: !0, get: function() {
     return i.NonUniformSimpleEventList;
   } });
-  const r = j;
+  const r = A;
   Object.defineProperty(n, "SimpleEventList", { enumerable: !0, get: function() {
     return r.SimpleEventList;
   } });
 })(de);
-var pe = {}, A = {};
-Object.defineProperty(A, "__esModule", { value: !0 });
-A.SignalDispatcher = void 0;
+var pe = {}, M = {};
+Object.defineProperty(M, "__esModule", { value: !0 });
+M.SignalDispatcher = void 0;
 const ie = u;
 class Xe extends ie.DispatcherBase {
   /**
@@ -1296,11 +1296,11 @@ class Xe extends ie.DispatcherBase {
     return super.asEvent();
   }
 }
-A.SignalDispatcher = Xe;
-var G = {}, M = {};
-Object.defineProperty(M, "__esModule", { value: !0 });
-M.SignalList = void 0;
-const Ke = u, xe = A;
+M.SignalDispatcher = Xe;
+var Z = {}, H = {};
+Object.defineProperty(H, "__esModule", { value: !0 });
+H.SignalList = void 0;
+const Ke = u, xe = M;
 class et extends Ke.EventListBase {
   /**
    * Creates an instance of SignalList.
@@ -1322,10 +1322,10 @@ class et extends Ke.EventListBase {
     return new xe.SignalDispatcher();
   }
 }
-M.SignalList = et;
-Object.defineProperty(G, "__esModule", { value: !0 });
-G.SignalHandlingBase = void 0;
-const tt = u, nt = M;
+H.SignalList = et;
+Object.defineProperty(Z, "__esModule", { value: !0 });
+Z.SignalHandlingBase = void 0;
+const tt = u, nt = H;
 class it extends tt.HandlingBase {
   /**
    * Creates an instance of SignalHandlingBase.
@@ -1336,7 +1336,7 @@ class it extends tt.HandlingBase {
     super(new nt.SignalList());
   }
 }
-G.SignalHandlingBase = it;
+Z.SignalHandlingBase = it;
 (function(n) {
   /*!
    * Strongly Typed Events for TypeScript - Promise Signals
@@ -1347,15 +1347,15 @@ G.SignalHandlingBase = it;
    * Released under the MIT license
    */
   Object.defineProperty(n, "__esModule", { value: !0 }), n.SignalList = n.SignalHandlingBase = n.SignalDispatcher = void 0;
-  const e = A;
+  const e = M;
   Object.defineProperty(n, "SignalDispatcher", { enumerable: !0, get: function() {
     return e.SignalDispatcher;
   } });
-  const t = G;
+  const t = Z;
   Object.defineProperty(n, "SignalHandlingBase", { enumerable: !0, get: function() {
     return t.SignalHandlingBase;
   } });
-  const i = M;
+  const i = H;
   Object.defineProperty(n, "SignalList", { enumerable: !0, get: function() {
     return i.SignalList;
   } });
@@ -1406,9 +1406,9 @@ class rt extends re.PromiseDispatcherBase {
   }
 }
 S.PromiseEventDispatcher = rt;
-var Z = {}, H = {};
-Object.defineProperty(H, "__esModule", { value: !0 });
-H.PromiseEventList = void 0;
+var z = {}, C = {};
+Object.defineProperty(C, "__esModule", { value: !0 });
+C.PromiseEventList = void 0;
 const st = u, at = S;
 class ot extends st.EventListBase {
   /**
@@ -1424,19 +1424,19 @@ class ot extends st.EventListBase {
     return new at.PromiseEventDispatcher();
   }
 }
-H.PromiseEventList = ot;
-Object.defineProperty(Z, "__esModule", { value: !0 });
-Z.PromiseEventHandlingBase = void 0;
-const ct = u, ut = H;
+C.PromiseEventList = ot;
+Object.defineProperty(z, "__esModule", { value: !0 });
+z.PromiseEventHandlingBase = void 0;
+const ct = u, ut = C;
 class lt extends ct.HandlingBase {
   constructor() {
     super(new ut.PromiseEventList());
   }
 }
-Z.PromiseEventHandlingBase = lt;
-var z = {};
-Object.defineProperty(z, "__esModule", { value: !0 });
-z.NonUniformPromiseEventList = void 0;
+z.PromiseEventHandlingBase = lt;
+var Q = {};
+Object.defineProperty(Q, "__esModule", { value: !0 });
+Q.NonUniformPromiseEventList = void 0;
 const dt = S;
 class pt {
   constructor() {
@@ -1466,7 +1466,7 @@ class pt {
     return new dt.PromiseEventDispatcher();
   }
 }
-z.NonUniformPromiseEventList = pt;
+Q.NonUniformPromiseEventList = pt;
 (function(n) {
   /*!
    * Strongly Typed Events for TypeScript - Core
@@ -1481,22 +1481,22 @@ z.NonUniformPromiseEventList = pt;
   Object.defineProperty(n, "PromiseEventDispatcher", { enumerable: !0, get: function() {
     return e.PromiseEventDispatcher;
   } });
-  const t = Z;
+  const t = z;
   Object.defineProperty(n, "PromiseEventHandlingBase", { enumerable: !0, get: function() {
     return t.PromiseEventHandlingBase;
   } });
-  const i = H;
+  const i = C;
   Object.defineProperty(n, "PromiseEventList", { enumerable: !0, get: function() {
     return i.PromiseEventList;
   } });
-  const r = z;
+  const r = Q;
   Object.defineProperty(n, "NonUniformPromiseEventList", { enumerable: !0, get: function() {
     return r.NonUniformPromiseEventList;
   } });
 })(me);
-var he = {}, C = {};
-Object.defineProperty(C, "__esModule", { value: !0 });
-C.PromiseSignalDispatcher = void 0;
+var he = {}, N = {};
+Object.defineProperty(N, "__esModule", { value: !0 });
+N.PromiseSignalDispatcher = void 0;
 const se = u;
 class mt extends se.PromiseDispatcherBase {
   /**
@@ -1532,11 +1532,11 @@ class mt extends se.PromiseDispatcherBase {
     return super.asEvent();
   }
 }
-C.PromiseSignalDispatcher = mt;
-var Q = {}, N = {};
-Object.defineProperty(N, "__esModule", { value: !0 });
-N.PromiseSignalList = void 0;
-const ht = u, gt = C;
+N.PromiseSignalDispatcher = mt;
+var X = {}, U = {};
+Object.defineProperty(U, "__esModule", { value: !0 });
+U.PromiseSignalList = void 0;
+const ht = u, gt = N;
 class ft extends ht.EventListBase {
   /**
    * Creates a new SignalList instance.
@@ -1551,16 +1551,16 @@ class ft extends ht.EventListBase {
     return new gt.PromiseSignalDispatcher();
   }
 }
-N.PromiseSignalList = ft;
-Object.defineProperty(Q, "__esModule", { value: !0 });
-Q.PromiseSignalHandlingBase = void 0;
-const vt = u, bt = N;
+U.PromiseSignalList = ft;
+Object.defineProperty(X, "__esModule", { value: !0 });
+X.PromiseSignalHandlingBase = void 0;
+const vt = u, bt = U;
 class Et extends vt.HandlingBase {
   constructor() {
     super(new bt.PromiseSignalList());
   }
 }
-Q.PromiseSignalHandlingBase = Et;
+X.PromiseSignalHandlingBase = Et;
 (function(n) {
   /*!
    * Strongly Typed Events for TypeScript - Promise Signals
@@ -1571,20 +1571,20 @@ Q.PromiseSignalHandlingBase = Et;
    * Released under the MIT license
    */
   Object.defineProperty(n, "__esModule", { value: !0 }), n.PromiseSignalList = n.PromiseSignalHandlingBase = n.PromiseSignalDispatcher = void 0;
-  const e = C;
+  const e = N;
   Object.defineProperty(n, "PromiseSignalDispatcher", { enumerable: !0, get: function() {
     return e.PromiseSignalDispatcher;
   } });
-  const t = Q;
+  const t = X;
   Object.defineProperty(n, "PromiseSignalHandlingBase", { enumerable: !0, get: function() {
     return t.PromiseSignalHandlingBase;
   } });
-  const i = N;
+  const i = U;
   Object.defineProperty(n, "PromiseSignalList", { enumerable: !0, get: function() {
     return i.PromiseSignalList;
   } });
 })(he);
-var ge = {}, X = {}, P = {};
+var ge = {}, K = {}, P = {};
 Object.defineProperty(P, "__esModule", { value: !0 });
 P.PromiseSimpleEventDispatcher = void 0;
 const ae = u;
@@ -1624,8 +1624,8 @@ class _t extends ae.PromiseDispatcherBase {
   }
 }
 P.PromiseSimpleEventDispatcher = _t;
-Object.defineProperty(X, "__esModule", { value: !0 });
-X.NonUniformPromiseSimpleEventList = void 0;
+Object.defineProperty(K, "__esModule", { value: !0 });
+K.NonUniformPromiseSimpleEventList = void 0;
 const St = P;
 class Pt {
   constructor() {
@@ -1655,10 +1655,10 @@ class Pt {
     return new St.PromiseSimpleEventDispatcher();
   }
 }
-X.NonUniformPromiseSimpleEventList = Pt;
-var K = {}, U = {};
-Object.defineProperty(U, "__esModule", { value: !0 });
-U.PromiseSimpleEventList = void 0;
+K.NonUniformPromiseSimpleEventList = Pt;
+var x = {}, F = {};
+Object.defineProperty(F, "__esModule", { value: !0 });
+F.PromiseSimpleEventList = void 0;
 const yt = u, Dt = P;
 class Bt extends yt.EventListBase {
   /**
@@ -1674,16 +1674,16 @@ class Bt extends yt.EventListBase {
     return new Dt.PromiseSimpleEventDispatcher();
   }
 }
-U.PromiseSimpleEventList = Bt;
-Object.defineProperty(K, "__esModule", { value: !0 });
-K.PromiseSimpleEventHandlingBase = void 0;
-const Lt = u, wt = U;
+F.PromiseSimpleEventList = Bt;
+Object.defineProperty(x, "__esModule", { value: !0 });
+x.PromiseSimpleEventHandlingBase = void 0;
+const Lt = u, wt = F;
 class Ot extends Lt.HandlingBase {
   constructor() {
     super(new wt.PromiseSimpleEventList());
   }
 }
-K.PromiseSimpleEventHandlingBase = Ot;
+x.PromiseSimpleEventHandlingBase = Ot;
 (function(n) {
   /*!
    * Strongly Typed Events for TypeScript - Core
@@ -1694,7 +1694,7 @@ K.PromiseSimpleEventHandlingBase = Ot;
    * Released under the MIT license
    */
   Object.defineProperty(n, "__esModule", { value: !0 }), n.NonUniformPromiseSimpleEventList = n.PromiseSimpleEventList = n.PromiseSimpleEventHandlingBase = n.PromiseSimpleEventDispatcher = void 0;
-  const e = X;
+  const e = K;
   Object.defineProperty(n, "NonUniformPromiseSimpleEventList", { enumerable: !0, get: function() {
     return e.NonUniformPromiseSimpleEventList;
   } });
@@ -1702,11 +1702,11 @@ K.PromiseSimpleEventHandlingBase = Ot;
   Object.defineProperty(n, "PromiseSimpleEventDispatcher", { enumerable: !0, get: function() {
     return t.PromiseSimpleEventDispatcher;
   } });
-  const i = K;
+  const i = x;
   Object.defineProperty(n, "PromiseSimpleEventHandlingBase", { enumerable: !0, get: function() {
     return i.PromiseSimpleEventHandlingBase;
   } });
-  const r = U;
+  const r = F;
   Object.defineProperty(n, "PromiseSimpleEventList", { enumerable: !0, get: function() {
     return r.PromiseSimpleEventList;
   } });
@@ -1797,12 +1797,12 @@ K.PromiseSimpleEventHandlingBase = Ot;
   } }), Object.defineProperty(n, "NonUniformPromiseSimpleEventList", { enumerable: !0, get: function() {
     return o.NonUniformPromiseSimpleEventList;
   } });
-})(I);
+})(T);
 const p = class p {
   constructor() {
-    d(this, "_onSubmit", new I.SignalDispatcher());
-    d(this, "_onValidate", new I.SignalDispatcher());
-    d(this, "_onError", new I.SignalDispatcher());
+    d(this, "_onSubmit", new T.SignalDispatcher());
+    d(this, "_onValidate", new T.SignalDispatcher());
+    d(this, "_onError", new T.SignalDispatcher());
     d(this, "submit", !0);
     d(this, "submitPromise", !1);
     d(this, "validate", !0);
@@ -1843,7 +1843,7 @@ const p = class p {
   }
 };
 d(p, "instance");
-let T = p;
+let q = p;
 class g {
   constructor() {
     d(this, "vgsField", document.querySelector(
@@ -1881,7 +1881,7 @@ class g {
     d(this, "paymentTypeField", document.querySelector(
       "#en__field_transaction_paymenttype"
     ));
-    d(this, "_form", T.getInstance());
+    d(this, "_form", q.getInstance());
     d(this, "field_expiration_month", null);
     d(this, "field_expiration_year", null);
     d(this, "handleExpUpdate", (e) => {
@@ -2035,11 +2035,11 @@ class g {
     return !0;
   }
 }
-const x = document.querySelector(
+const D = document.querySelector(
   "input[type='radio'][value='monthly']"
-), y = () => x && x.checked, jt = x.name || "transaction.recurrfreq";
+), y = () => D && D.checked, jt = (D == null ? void 0 : D.name) || "transaction.recurrfreq";
 function oe() {
-  const n = T.getInstance(), e = (r) => {
+  const n = q.getInstance(), e = (r) => {
     v(r, "#fff", "#0F0");
   }, t = (r) => {
     v(r, "#fff", "#F00");
