@@ -6,3 +6,36 @@
   margin-top: 5px;
   display: block !important;
 }
+.en__errorList {
+  list-style: none; /* Remove default bullet points */
+  max-width: 600px;
+  margin: 20px 0 !important; /* Center the list and add vertical spacing */
+  padding: 0 !important;
+  background-color: transparent; /* Light pink for a gentle alert background */
+  border: 0;
+}
+
+.en__error {
+  position: relative;
+  font-size: 16px;
+  color: #cc0000; /* Soft red color for text */
+  padding: 12px 20px 12px 50px !important; /* Add padding around text */
+  margin: 8px 0 !important;
+  background-color: #ffe6e6;
+  border-left: 4px solid #cc0000;
+  border-radius: 4px;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.en__error::before {
+  content: "⚠️"; /* Warning icon */
+  font-size: 20px;
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.en__errorList li:not(:last-child) {
+  border-bottom: 1px solid #ffd6d6; /* Soft separator between items */
+}
