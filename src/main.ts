@@ -70,6 +70,13 @@ function run() {
           "transaction.recurrfreq",
           freq === "MONTHLY" ? "MONTHLY" : ""
         );
+        if (!hasDefaultAmount()) {
+          infoLog("Donation Total is 0 - Set a default amount");
+          setDefaultAmount();
+        }
+        window.setTimeout(() => {
+          clearAmounts();
+        }, 50);
       });
     });
     // Update the hidden fields when the page loads
@@ -78,6 +85,35 @@ function run() {
       "transaction.recurrfreq",
       isMonthly() ? "MONTHLY" : ""
     );
+    if (!hasDefaultAmount()) {
+      infoLog("Donation Total is 0 - Set a default amount");
+      setDefaultAmount();
+    }
+    // Clear any non-numeric amounts
+    clearAmounts();
+    // Validate the expiration date
+    enForm.onValidate.subscribe(() => {
+      if (enForm.validate) {
+        const ccExpireContainer = document.querySelector(
+          ".en__field--ccexpire"
+        ) as HTMLElement;
+        if (!ccExpireContainer) {
+          return;
+        }
+        const isValid = validateExpDate();
+        infoLog(`Exp Date Validation: ${isValid}`);
+        enForm.validate = isValid;
+        if (!isValid) {
+          CommonEN.setError(
+            ccExpireContainer,
+            "Please enter a valid expiration date"
+          );
+          CommonEN.enableSubmit();
+        } else {
+          CommonEN.removeError(ccExpireContainer);
+        }
+      }
+    });
   } else {
     errorLog("Not a Donation Page");
   }
@@ -119,6 +155,99 @@ function run() {
   };
   // Very Good Security
   new VGS();
+}
+function hasDefaultAmount() {
+  if (
+    CommonEN.checkNested(
+      window,
+      "EngagingNetworks",
+      "require",
+      "_defined",
+      "enjs",
+      "getDonationTotal"
+    )
+  ) {
+    if (window.EngagingNetworks.require._defined.enjs.getDonationTotal() > 0) {
+      return true;
+    }
+  }
+  return false;
+}
+function setDefaultAmount() {
+  const firstDonationAmount = document.querySelector(
+    ".en__field--donationAmt .en__field__item:first-child input"
+  ) as HTMLInputElement;
+  if (firstDonationAmount) {
+    firstDonationAmount.checked = true;
+    // Trigger the change event
+    const event = new Event("change", {
+      bubbles: true,
+      cancelable: true,
+    });
+    firstDonationAmount.dispatchEvent(event);
+  }
+}
+function clearAmounts() {
+  const donationAmounts = document.querySelectorAll(
+    ".en__field--donationAmt .en__field__item input"
+  ) as NodeListOf<HTMLInputElement>;
+  donationAmounts.forEach((amount) => {
+    if (
+      amount.value !== "" &&
+      amount.value.toLowerCase() !== "other" &&
+      isNaN(parseInt(amount.value))
+    ) {
+      logger(`Clearing Amount: ${amount.value}`, "#fff", "#00F");
+      amount.value = CommonEN.cleanAmount(amount.value).toString();
+    }
+  });
+}
+function validateExpDate() {
+  if (!isPaymentCard()) {
+    return true;
+  }
+  const expFields = document.querySelectorAll(
+    ".en__field--ccexpire select.en__field__input"
+  ) as NodeListOf<HTMLSelectElement>;
+  if (expFields.length !== 2) {
+    return true; // If we don't have 2 fields, we can't validate
+  }
+  const month = expFields[0].value; // 01 - 12
+  const year = expFields[1].value; // YYYY
+  if (month === "" || year === "") {
+    return false;
+  }
+  const today = new Date();
+  const currentYear = today.getFullYear();
+  const currentMonth = today.getMonth() + 1;
+  const expYear = parseInt(year);
+  const expMonth = parseInt(month);
+  if (expYear < currentYear) {
+    return false;
+  }
+  if (expYear === currentYear && expMonth < currentMonth) {
+    return false;
+  }
+  return true;
+}
+function isPaymentCard() {
+  const paymentType = CommonEN.getPaymentType();
+  const isCard = [
+    "card",
+    "visa",
+    "mastercard",
+    "amex",
+    "discover",
+    "diners",
+    "jcb",
+    "vi",
+    "mc",
+    "ax",
+    "dc",
+    "di",
+    "jc",
+  ].includes(paymentType.toLowerCase());
+  return isCard;
 }
 // Make sure we only run after the page load, checking if the page is fully loaded
 if (document.readyState === "complete") {
