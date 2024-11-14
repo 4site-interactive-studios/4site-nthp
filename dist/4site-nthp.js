@@ -1,4 +1,4 @@
-(function(){"use strict";try{if(typeof document<"u"){var o=document.createElement("style");o.appendChild(document.createTextNode('.en__field__error{color:red;font-size:12px;font-weight:400;margin-top:5px;display:block!important}.en__errorList{list-style:none;max-width:600px;margin:20px 0!important;padding:0!important;background-color:transparent;border:0}.en__error{position:relative;font-size:16px;color:#c00;padding:12px 20px 12px 50px!important;margin:8px 0!important;background-color:#ffe6e6;border-left:4px solid #cc0000;border-radius:4px;transition:transform .2s ease-in-out,box-shadow .2s ease-in-out}.en__error:before{content:"⚠️";font-size:20px;position:absolute;left:15px;top:50%;transform:translateY(-50%)}.en__errorList li:not(:last-child){border-bottom:1px solid #ffd6d6}')),document.head.appendChild(o)}}catch(e){console.error("vite-plugin-css-injected-by-js",e)}})();
+(function(){"use strict";try{if(typeof document<"u"){var r=document.createElement("style");r.appendChild(document.createTextNode('.en__field__error{color:red;font-size:12px;font-weight:400;margin-top:5px;display:block!important}.en__errorList{list-style:none;max-width:600px;margin:20px 0!important;padding:0!important;background-color:transparent;border:0}.en__error{position:relative;font-size:16px;color:#c00;padding:12px 20px 12px 50px!important;margin:8px 0!important;background-color:#ffe6e6;border-left:4px solid #cc0000;border-radius:4px;transition:transform .2s ease-in-out,box-shadow .2s ease-in-out}.en__error:before{content:"⚠️";font-size:20px;position:absolute;left:15px;top:50%;transform:translateY(-50%)}.en__errorList li:not(:last-child){border-bottom:1px solid #ffd6d6}.loader-wrapper{display:flex;justify-content:center}.loader{position:relative;width:1.5rem;height:1.5rem;margin-right:.6rem;margin-top:2px;margin-left:-2rem}.loader-quart{border-radius:50%;border:.375rem solid rgba(255,255,255,.4)}.loader-quart:before{content:"";position:absolute;top:-.375rem;right:-.375rem;bottom:-.375rem;left:-.375rem;border-radius:3.125rem;border:.375rem solid transparent;border-top-color:#fff;-webkit-animation:spin 1s linear infinite;animation:spin 1s linear infinite}@keyframes spin{0%{transform:rotate(0)}to{transform:rotate(360deg)}}')),document.head.appendChild(r)}}catch(e){console.error("vite-plugin-css-injected-by-js",e)}})();
 var Ee = Object.defineProperty;
 var _e = (n, e, t) => e in n ? Ee(n, e, { enumerable: !0, configurable: !0, writable: !0, value: t }) : n[e] = t;
 var d = (n, e, t) => _e(n, typeof e != "symbol" ? e + "" : e, t);
@@ -2081,18 +2081,18 @@ function oe() {
       if (!s)
         return;
       const a = Ct();
-      i(`Exp Date Validation: ${a}`), n.validate = a, a ? c.removeError(s) : (c.setError(
+      i(`Exp Date Validation: ${a}`), n.validate = a, a ? c.removeError(s) : c.setError(
         s,
         "Please enter a valid expiration date"
-      ), c.enableSubmit());
+      );
     }
-  })) : t("Not a Donation Page"), n.onSubmit.subscribe(() => {
+  })) : t("Not a Donation Page"), c.watchForError(c.enableSubmit), n.onSubmit.subscribe(() => {
     i("onSubmit");
   }), n.onValidate.subscribe(() => {
-    i("onValidate");
+    i("onValidate"), c.disableSubmit("Processing...");
   }), n.onError.subscribe(() => {
-    i("onError");
-  }), window.enOnSubmit = () => (n.submit = !0, n.submitPromise = !1, n.dispatchSubmit(), c.watchForError(c.enableSubmit), n.submit ? n.submitPromise ? n.submitPromise : (e("enOnSubmit Success"), !0) : !1), window.enOnError = () => {
+    i("onError"), c.enableSubmit();
+  }), window.enOnSubmit = () => (n.submit = !0, n.submitPromise = !1, n.dispatchSubmit(), n.submit ? n.submitPromise ? n.submitPromise : (e("enOnSubmit Success"), !0) : !1), window.enOnError = () => {
     n.dispatchError();
   }, window.enOnValidate = () => (n.validate = !0, n.validatePromise = !1, n.dispatchValidate(), n.validate ? n.validatePromise ? n.validatePromise : (e("Validation Passed"), !0) : !1), new g();
 }

@@ -108,7 +108,6 @@ function run() {
             ccExpireContainer,
             "Please enter a valid expiration date"
           );
-          CommonEN.enableSubmit();
         } else {
           CommonEN.removeError(ccExpireContainer);
         }
@@ -118,21 +117,24 @@ function run() {
     errorLog("Not a Donation Page");
   }
 
+  CommonEN.watchForError(CommonEN.enableSubmit);
+
   // EN Form Events
   enForm.onSubmit.subscribe(() => {
     infoLog("onSubmit");
   });
   enForm.onValidate.subscribe(() => {
     infoLog("onValidate");
+    CommonEN.disableSubmit("Processing...");
   });
   enForm.onError.subscribe(() => {
     infoLog("onError");
+    CommonEN.enableSubmit();
   });
   window.enOnSubmit = () => {
     enForm.submit = true;
     enForm.submitPromise = false;
     enForm.dispatchSubmit();
-    CommonEN.watchForError(CommonEN.enableSubmit);
     if (!enForm.submit) return false;
     if (enForm.submitPromise) return enForm.submitPromise;
     successLog("enOnSubmit Success");
